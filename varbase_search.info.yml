@@ -5,12 +5,7 @@ core: 8.x
 version: 8.x-6.x-dev
 package: Varbase
 dependencies:
-  - better_exposed_filters
-  - ds
-  - node
+  - varbase_core
   - search_api
   - search_api_db
-  - text
   - ultimate_cron
-  - user
-  - views
