@@ -31,7 +31,7 @@
     "oomphinc/composer-installers-extender": "^1.1.2",
     "cweagans/composer-patches": "^1.6.4",
     "drupal/drupal-library-installer-plugin": "^0.3",
-    "drupal/search_api": "1.9"
+    "drupal/search_api": "1.10"
   },
   "extra": {
     "branch-alias": {
