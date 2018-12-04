@@ -5,7 +5,6 @@ core: 8.x
 version: 8.x-5.x-dev
 package: Varbase
 dependencies:
-  - varbase_core:varbase_core
   - search_api:search_api
   - search_api:search_api_db
   - ultimate_cron:ultimate_cron
