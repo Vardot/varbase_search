@@ -10,6 +10,7 @@ use Drupal\Core\Config;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\FileStorage;
+use Drupal\user\RoleInterface;
 
 /**
  * Implements hook_install().
