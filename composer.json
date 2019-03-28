@@ -31,7 +31,7 @@
     "oomphinc/composer-installers-extender": "~1.0",
     "cweagans/composer-patches": "~1.0",
     "drupal/drupal-library-installer-plugin": "^0.3",
-    "drupal/search_api": "1.11"
+    "drupal/search_api": "~1.0"
   },
   "extra": {
     "branch-alias": {
@@ -42,12 +42,6 @@
       "npm-asset"
     ],
     "enable-patching": true,
-    "composer-exit-on-patch-failure": true,
-    "patches": {
-      "drupal/search_api": {
-        "Issue #2931562: Fixed the Notice: Undefined index: total When we enable the module in the installation step.":
-        "https://www.drupal.org/files/issues/2931562-13--undefined_total_in_task_manager_batch_finish.patch"
-      }
-    }
+    "composer-exit-on-patch-failure": true
   }
 }
