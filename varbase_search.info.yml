@@ -1,5 +1,5 @@
-name: 'Varbase Search'
-description: 'Provides search configuration, and offering search capabilities.'
+name: "Varbase Search"
+description: "Provides search configuration, and offering search capabilities."
 type: module
 package: Varbase
 core_version_requirement: ^9

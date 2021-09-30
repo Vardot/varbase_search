@@ -24,14 +24,14 @@ third_party_settings:
           classes:
             row: row
           add_layout_class: 1
-          attributes: ''
+          attributes: ""
         regions:
           main:
             wrapper: div
             classes:
               col-sm-12: col-sm-12
             add_region_classes: 1
-            attributes: ''
+            attributes: ""
     regions:
       main:
         - group_authoring_information
@@ -60,13 +60,13 @@ third_party_settings:
         settings:
           link: true
           wrapper: h5
-          class: ''
+          class: ""
         ft:
           id: default
           settings:
-            lb: ''
+            lb: ""
             lb-col: false
-            classes: {  }
+            classes: {}
       node_link:
         plugin_id: node_link
         weight: 4
@@ -77,39 +77,39 @@ third_party_settings:
       children:
         - node_author
         - node_post_date
-      parent_name: ''
+      parent_name: ""
       weight: 0
       format_type: html_element
       format_settings:
-        id: ''
+        id: ""
         classes: authoring-information
         element: div
         show_label: false
         label_element: h3
-        label_element_classes: ''
-        attributes: ''
+        label_element_classes: ""
+        attributes: ""
         effect: none
         speed: fast
-      label: 'Authoring information'
+      label: "Authoring information"
       region: hidden
     group_content_wrapper:
       children:
         - node_title
         - search_api_excerpt
-      parent_name: ''
+      parent_name: ""
       weight: 1
       format_type: html_element
       format_settings:
-        id: ''
+        id: ""
         classes: content-wrapper
         element: div
         show_label: false
         label_element: h3
-        label_element_classes: ''
-        attributes: ''
+        label_element_classes: ""
+        attributes: ""
         effect: none
         speed: fast
-      label: 'Content wrapper'
+      label: "Content wrapper"
       region: hidden
 id: node.CONTENT_TYPE_NAME.search_result
 targetEntityType: node
@@ -119,8 +119,8 @@ content:
   search_api_excerpt:
     weight: 3
     region: main
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
 hidden:
   body: true
   links: true
