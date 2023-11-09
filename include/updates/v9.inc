@@ -5,6 +5,8 @@
  * Contains varbase_search_update_9###(s) hook updates.
  */
 
+use Vardot\Installer\ModuleInstallerFactory;
+
 /**
  * Issue #3272294: Switch to use the Module Installer Factory.
  *
