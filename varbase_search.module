@@ -40,7 +40,7 @@ function _varbase_search_form_entity_view_display_edit_form_submit($form, FormSt
 
     foreach ($selected_view_modes as $selected_view_mode) {
 
-      // Only when we do hava a new selected view mode inventory.
+      // Only when we do have a new selected view mode inventory.
       if (!in_array($selected_view_mode, $enabled_view_modes) && in_array($selected_view_mode, $view_modes)) {
 
         // Replace CONTENT_TYPE_NAME with the bundle name for the config name.
@@ -55,7 +55,7 @@ function _varbase_search_form_entity_view_display_edit_form_submit($form, FormSt
         // Replace CONTENT_TYPE_NAME with the bundle name in config template.
         $real_config_template_content = str_replace('CONTENT_TYPE_NAME', $bundle_name, $config_template_content);
 
-        // Parse real config template conten to data and save new message value.
+        // Parse real config template content to data and save new message value.
         $real_config_template_content_data = (array) Yaml::parse($real_config_template_content);
         $view_mode_config->setData($real_config_template_content_data)->save();
       }
