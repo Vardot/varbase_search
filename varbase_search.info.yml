@@ -2,9 +2,4 @@ name: Varbase Search
 description: Provides search configuration, and offering search capabilities.
 type: module
 package: Varbase
-core_version_requirement: ~10
-dependencies: {  }
-install:
-  - search
-  - search_api
-  - search_api_db
+core_version_requirement: ~10.3.0 || ~11.0.0
