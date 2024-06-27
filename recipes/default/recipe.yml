@@ -1,0 +1,21 @@
+name: Varbase Search - Default
+description: A recipe to manage default installed modules, configs and permissions.
+type: install
+  - search
+  - search_api
+  - search_api_db
+config:
+  import:
+    search: '*'
+    search_api: '*'
+    search_api_db: '*'
+    varbase_search:
+      - search_api.server.database_server
+      - ultimate_cron.job.search_api_cron
+  actions:
+    user.role.anonymous:
+      grantPermissions:
+        - 'search content'
+    user.role.authenticated:
+      grantPermissions:
+        - 'search content'

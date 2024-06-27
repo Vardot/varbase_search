@@ -5,7 +5,8 @@
  * Contains install and update for Varbase Search module.
  */
 
-use Vardot\Installer\ModuleInstallerFactory;
+use Drupal\Core\Recipe\Recipe;
+use Drupal\Core\Recipe\RecipeRunner;
 
 // Include all helpers and updates.
 include_once __DIR__ . '/includes/helpers.inc';
@@ -16,13 +17,7 @@ include_once __DIR__ . '/includes/updates.inc';
  */
 function varbase_search_install() {
 
-  // Processor for install: in varbase_search.info.yml file.
-  ModuleInstallerFactory::installList('varbase_search');
-
-  // Install optional configs.
-  ModuleInstallerFactory::importConfigsFromScanedDirectory('varbase_search', '/^.*(settings.yml)$/i');
-
-  // Add permissions.
-  ModuleInstallerFactory::addPermissions('varbase_search');
+  $default_recipe = Recipe::createFromDirectory(__DIR__ . '/recipes/default');
+  RecipeRunner::processRecipe($default_recipe);
 
 }
