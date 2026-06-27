@@ -1,0 +1,125 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.content
+  module:
+    - search_api
+id: search_content
+label: 'Site search'
+module: views
+description: 'Front-end site search powered by Search API.'
+tag: ''
+base_table: search_api_index_content
+base_field: search_api_id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Search
+      pager:
+        type: mini
+        options:
+          items_per_page: 10
+      exposed_form:
+        type: basic
+        options:
+          submit_button: 'Search the site'
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+      access:
+        type: none
+      cache:
+        type: search_api_none
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+          empty: true
+          content: 'No results found for your search.'
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_content
+          field: search_api_relevance
+          plugin_id: search_api
+          order: DESC
+      filters:
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_content
+          field: search_api_fulltext
+          plugin_id: search_api_fulltext
+          operator: and
+          value: ''
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Search the site'
+            description: 'Enter your keywords'
+            identifier: search
+            required: false
+          parse_mode: terms
+      style:
+        type: default
+      row:
+        type: search_api
+        options:
+          view_modes:
+            'entity:node':
+              article: teaser
+              page: teaser
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:search_api.index.content'
+        - 'search_api_list:content'
+  block_1:
+    id: block_1
+    display_title: 'Search box'
+    display_plugin: block
+    position: 2
+    display_options:
+      display_extenders: {  }
+      block_description: 'Site search box'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:search_api.index.content'
+        - 'search_api_list:content'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      exposed_block: true
+      display_extenders: {  }
+      path: search
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:search_api.index.content'
+        - 'search_api_list:content'
