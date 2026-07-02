@@ -1,0 +1,25 @@
+_meta:
+  version: "1.0"
+  entity_type: node
+  uuid: c2f4d6a8-9b31-4e2c-8d17-3a5b9c0e2d44
+  bundle: article
+  default_langcode: en
+default:
+  revision_uid:
+    - target_id: 1
+  status:
+    - value: true
+  uid:
+    - target_id: 1
+  title:
+    - value: 'Findable Varbase Article'
+  created:
+    - value: 1700000000
+  promote:
+    - value: true
+  sticky:
+    - value: false
+  body:
+    - value: '<p>This article mentions the strawberry keyword so it can be found by the search.</p>'
+      format: basic_html
+      summary: ''

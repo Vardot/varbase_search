@@ -9,5 +9,6 @@ install:
   - block
   - node
 config:
+  strict: false
   import:
     varbase_search: '*'
