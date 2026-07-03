@@ -1,0 +1,13 @@
+name: 'Varbase Search Test'
+description: 'Provisions a Standard site with Varbase Search + Search API, a content index, a search results page and a front-end search box block, for the automated tests.'
+type: 'Testing'
+install:
+  - varbase_search
+  - search_api
+  - search_api_db
+  - views
+  - block
+  - node
+config:
+  import:
+    varbase_search: '*'
