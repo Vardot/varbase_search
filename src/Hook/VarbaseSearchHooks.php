@@ -1,0 +1,89 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\varbase_search\Hook;
+
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+use Symfony\Component\Yaml\Yaml;
+
+/**
+ * Hook implementations for the Varbase Search module.
+ */
+class VarbaseSearchHooks {
+
+  use DependencySerializationTrait;
+
+  /**
+   * Constructs a VarbaseSearchHooks object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   *   The config factory.
+   * @param \Drupal\Core\Extension\ModuleExtensionList $moduleExtensionList
+   *   The module extension list.
+   */
+  public function __construct(
+    protected ConfigFactoryInterface $configFactory,
+    protected ModuleExtensionList $moduleExtensionList,
+  ) {}
+
+  /**
+   * Implements hook_form_entity_view_display_edit_form_alter().
+   */
+  #[Hook('form_entity_view_display_edit_form_alter')]
+  public function formEntityViewDisplayEditFormAlter(array &$form, FormStateInterface $form_state): void {
+    // Apply the config for view modes inventory form entity view display.
+    $form['actions']['submit']['#submit'][] = [$this, 'entityViewDisplayEditFormSubmit'];
+  }
+
+  /**
+   * Applies mapped view modes inventory for the entity view display edit form.
+   */
+  public function entityViewDisplayEditFormSubmit(array $form, FormStateInterface $form_state): void {
+    if (isset($form['modes']['display_modes_custom'])) {
+
+      // Bundle name.
+      $bundle_name = $form['#bundle'];
+
+      // Enabled view modes.
+      $enabled_view_modes = $form['modes']['display_modes_custom']['#default_value'];
+
+      // Current selected view modes.
+      $selected_view_modes = $form['modes']['display_modes_custom']['#value'];
+
+      // Search view mode.
+      $view_modes = ['search_result'];
+
+      // View mode template.
+      $config_template_file = '/src/assets/config_templates/CONTENT_TYPE_NAME/core.entity_view_display.node.CONTENT_TYPE_NAME.search_result.yml';
+
+      foreach ($selected_view_modes as $selected_view_mode) {
+
+        // Only when we do have a new selected view mode inventory.
+        if (!in_array($selected_view_mode, $enabled_view_modes) && in_array($selected_view_mode, $view_modes)) {
+
+          // Replace CONTENT_TYPE_NAME with the bundle name for the config name.
+          $real_config_name = str_replace('CONTENT_TYPE_NAME', $bundle_name, 'core.entity_view_display.node.CONTENT_TYPE_NAME.search_result');
+          $view_mode_config = $this->configFactory->getEditable($real_config_name);
+
+          // Load the config template.
+          $module_path = $this->moduleExtensionList->getPath('varbase_search');
+          $full_config_template_file = DRUPAL_ROOT . '/' . $module_path . $config_template_file;
+          $config_template_content = file_get_contents($full_config_template_file);
+
+          // Replace CONTENT_TYPE_NAME with the bundle name in config template.
+          $real_config_template_content = str_replace('CONTENT_TYPE_NAME', $bundle_name, $config_template_content);
+
+          // Parse real config template content to data and save new message value.
+          $real_config_template_content_data = (array) Yaml::parse($real_config_template_content);
+          $view_mode_config->setData($real_config_template_content_data)->save();
+        }
+      }
+    }
+  }
+
+}
