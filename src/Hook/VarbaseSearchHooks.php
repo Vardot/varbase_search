@@ -9,7 +9,7 @@ use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Symfony\Component\Yaml\Yaml;
+use Drupal\Component\Serialization\Yaml;
 
 /**
  * Hook implementations for the Varbase Search module.
@@ -79,7 +79,7 @@ class VarbaseSearchHooks {
           $real_config_template_content = str_replace('CONTENT_TYPE_NAME', $bundle_name, $config_template_content);
 
           // Parse real config template content to data and save new message value.
-          $real_config_template_content_data = (array) Yaml::parse($real_config_template_content);
+          $real_config_template_content_data = (array) Yaml::decode($real_config_template_content);
           $view_mode_config->setData($real_config_template_content_data)->save();
         }
       }
