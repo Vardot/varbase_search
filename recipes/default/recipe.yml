@@ -3,11 +3,13 @@ description: A recipe to manage default installed modules, configs and permissio
 type: install
 install:
   - search
+  - search_node
   - search_api
   - search_api_db
 config:
   import:
     search: '*'
+    search_node: '*'
     search_api: '*'
     search_api_db: '*'
     varbase_search:

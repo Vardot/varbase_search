@@ -18,3 +18,10 @@ Feature: Varbase Search - front-end search box
     When I am on "/search?search=strawberry"
     Then I should see "Findable Varbase Article"
     And I should not see "No results found"
+
+  Scenario: The core content search page is available
+    Given I am an anonymous user
+    When I am on "/search/node"
+    Then I should see "Enter your keywords"
+    And I should not see "Page not found"
+    And I should not see "The website encountered an unexpected error"
